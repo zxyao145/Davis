@@ -1,0 +1,7 @@
+﻿{
+  "name": "C# 正则",
+  "version": "1.0.0",
+  "author": "author",
+  "description": "C# 正则表达式测试",
+  "tags": [ "c#", "正则", "Regex"]
+}
