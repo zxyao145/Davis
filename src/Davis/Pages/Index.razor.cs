@@ -11,7 +11,7 @@ namespace Davis.Pages
     public partial class Index
     {
         [Inject]
-        ISessionStorageService SessionStorage { get; set; }
+        ISessionStorageService SessionStorage { get; set; } = default!;
 
 
         private readonly List<PluginInfo> _plugins = new List<PluginInfo>();
@@ -107,11 +107,39 @@ namespace Davis.Pages
             }
             else
             {
-                _renderPlugins = _plugins
-                               .Where(x => x.Name.Contains(_searchTxt, StringComparison.CurrentCultureIgnoreCase))
-                               .ToList();
+                _renderPlugins = 
+                    _plugins
+                    .Where(x => Match(x, _searchTxt))
+                    .ToList();
             }
             StateHasChanged();
+        }
+
+        private static bool Match(PluginInfo pluginInfo, string searchTxt)
+        {
+            if (string.IsNullOrWhiteSpace(searchTxt))
+            {
+                return true;
+            }
+
+            bool IngoreCaseContain(string originStr, string value)
+            {
+                return originStr.Contains(searchTxt, StringComparison.CurrentCultureIgnoreCase);
+            }
+
+            if (IngoreCaseContain(pluginInfo.Name, searchTxt))
+            {
+                return true;
+            }
+            foreach (var tag in pluginInfo.Tags)
+            {
+                if (IngoreCaseContain(tag, searchTxt))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

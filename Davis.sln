@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Davis", "src\Davis\Davis.cs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2486A112-2C71-48B9-AF05-7AD96BD31DE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagePlugin", "Plugins\MessagePlugin\MessagePlugin.csproj", "{9F3C3D43-AEA0-4067-9EAF-879574533177}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,14 @@ Global
 		{9B618CE4-6EE8-4761-A2ED-8C1536926F3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B618CE4-6EE8-4761-A2ED-8C1536926F3E}.Release|x64.ActiveCfg = Release|x64
 		{9B618CE4-6EE8-4761-A2ED-8C1536926F3E}.Release|x64.Build.0 = Release|x64
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Debug|x64.Build.0 = Debug|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Release|x64.ActiveCfg = Release|Any CPU
+		{9F3C3D43-AEA0-4067-9EAF-879574533177}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,9 +62,10 @@ Global
 		{CFF569FA-8BB9-44AA-A210-4F2631B28669} = {2486A112-2C71-48B9-AF05-7AD96BD31DE9}
 		{7EEA97BA-E850-4AD3-A386-EFCCC9F17C82} = {73746DF7-641D-4464-94E4-09336BAB05BE}
 		{9B618CE4-6EE8-4761-A2ED-8C1536926F3E} = {2486A112-2C71-48B9-AF05-7AD96BD31DE9}
+		{9F3C3D43-AEA0-4067-9EAF-879574533177} = {73746DF7-641D-4464-94E4-09336BAB05BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
 		SolutionGuid = {298F4825-CA55-4C0B-B352-710368ECAA9B}
+		        SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
 	EndGlobalSection
 EndGlobal

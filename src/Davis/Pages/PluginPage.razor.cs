@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Davis.Core;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,13 @@ namespace Davis.Pages
 {
     public partial class PluginPage
     {
+        [Inject]
+        internal PluginService PluginService { get; set; } = default!;
+
+        [Inject]
+        public IPluginContext Context { get; set; } = default!;
+
+
         [Parameter, EditorRequired]
         public string PluginName { get; set; } = "";
 
@@ -20,6 +28,8 @@ namespace Davis.Pages
         protected override void OnParametersSet()
         {
             var decodePluginName = HttpUtility.UrlDecode(PluginName);
+            ((PluginContext)Context).Name = decodePluginName.Split('/', '\\')[0];
+
             var (componentType, msg) = PluginService.GetComponent(decodePluginName);
             if (componentType == null)
             {
@@ -32,5 +42,6 @@ namespace Davis.Pages
             }
             StateHasChanged();
         }
+
     }
 }

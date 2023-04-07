@@ -4,10 +4,10 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<!--<BaseOutputPath>../../Davis/Plugins/$(MSBuildProjectName)</BaseOutputPath>-->
 		<OutputPath>../../src/Davis/Plugins/$(MSBuildProjectName)</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+
 	</PropertyGroup>
 
 
@@ -22,4 +22,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\Davis.Core\Davis.Core.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="wwwroot\**">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 </Project>

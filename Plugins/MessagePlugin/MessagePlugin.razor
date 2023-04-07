@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+
+@implements Davis.Core.IDavisPlugin
+@implements IDisposable
+@inject IJSRuntime _jsRuntime
+
+<div class="p-3 message-plugin">
+    <button @onclick="@(()=>{ Context?.SendNotification("Title", "Message");})"
+        type="button">
+        SendNotification
+    </button>
+
+    <button @onclick="@(()=>{ Context?.SendWebMessage("Message");})"
+            type="button">
+        OnSendWebMessage
+    </button>
+
+    <button @onclick="@(async ()=>{ await _jsRuntime.InvokeVoidAsync("alert", "Hello World!");})"
+            type="button">
+        OnSendWebMessage
+    </button>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Davis.Core.IPluginContext Context { get; set; } = default!;
+
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        await Context.LoadJs("index.js");
+        await Context.LoadCss("index.css");
+    }
+
+
+    public void Dispose()
+    {
+        _ = Context.UnLoadJs("index.js");
+        _ = Context.UnLoadCss("index.css");
+    }
+}

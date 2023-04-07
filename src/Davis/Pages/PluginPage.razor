@@ -3,11 +3,12 @@
 @using Davis.Core;
 @using System.Text.Encodings.Web;
 @using System.Web;
-@inject PluginService PluginService
 
 @if (_dynamicType != null)
 {
-    <DynamicComponent Type="_dynamicType" @ref="@_dynamicConponentRef"></DynamicComponent>
+    <CascadingValue Value="@Context">
+        <DynamicComponent Type="_dynamicType" @ref="@_dynamicConponentRef"></DynamicComponent>
+    </CascadingValue>
 }
 else
 {
