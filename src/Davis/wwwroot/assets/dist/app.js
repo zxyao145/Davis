@@ -10,7 +10,7 @@ window.Davis.loadJs = (url) => {
     cacheJs[url] = true;
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = `app://${url}`;
+    script.src = `davis://${url}`;
     document.body.appendChild(script);
     cacheJs[url] = script;
 }
@@ -39,7 +39,7 @@ window.Davis.loadCss = (url) => {
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.type = "text/css";
-    link.href = `app://${url}`;
+    link.href = `davis://${url}`;
     const head = document.getElementsByTagName("head")[0];
     head.appendChild(link);
     cacheCss[url] = link;

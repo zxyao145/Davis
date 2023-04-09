@@ -10,7 +10,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\Davis.Core\Davis.Core.csproj" />
+		<ProjectReference Include="..\..\src\Davis.Core\Davis.Core.csproj">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>compile</IncludeAssets>
+			<ExcludeAssets>runtime;contentFiles;build;buildTransitive;analyzers;native</ExcludeAssets>
+		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>

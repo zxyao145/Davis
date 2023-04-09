@@ -2,6 +2,7 @@
 using Blazored.SessionStorage;
 using Davis.Core;
 using Microsoft.Extensions.DependencyInjection;
+using OneOf.Types;
 using Photino.Blazor;
 
 namespace Davis;
@@ -45,7 +46,7 @@ class Program
         {
             app.MainWindow.OpenAlertWindow("Fatal exception", error.ExceptionObject.ToString());
         };
-        app.MainWindow.RegisterCustomSchemeHandler("app", (object sender, string scheme, string url, out string contentType) =>
+        app.MainWindow.RegisterCustomSchemeHandler("davis", (object sender, string scheme, string url, out string contentType) =>
         {
             if (url.EndsWith(".js"))
             {
@@ -59,16 +60,24 @@ class Program
             {
                 contentType = "";
             }
-            var urlPath = url.Substring("app://".Length);// app://MessagePlugin/wwwroot/index.js
+            var urlPath = url.Substring("davis://".Length);// davis://MessagePlugin/wwwroot/index.js
             var filePath = Path.Combine(AppContext.BaseDirectory, urlPath);
 
-            if (string.IsNullOrWhiteSpace(filePath))
+            if (!File.Exists(filePath))
             {
+                app.MainWindow.OpenAlertWindow("not fount assets", url);
                 return Stream.Null;
             }
-
-            var sr = new StreamReader(filePath);
-            return sr.BaseStream;
+            try
+            {
+                var sr = new StreamReader(filePath);
+                return sr.BaseStream;
+            }
+            catch (Exception e)
+            {
+                app.MainWindow.OpenAlertWindow("Fatal exception", e.Message);
+                return Stream.Null;
+            }
         });
 
         app.Run();
