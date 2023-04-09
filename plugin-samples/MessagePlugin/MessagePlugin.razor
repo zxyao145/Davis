@@ -30,18 +30,17 @@
     [CascadingParameter]
     public Davis.Core.IPluginContext Context { get; set; } = default!;
 
-
     public override async Task SetParametersAsync(ParameterView parameters)
     {
         await base.SetParametersAsync(parameters);
-        await Context.LoadJs("index.js");
-        await Context.LoadCss("index.css");
+        await Context.LoadJs("assets/index.js");
+        await Context.LoadCss("assets/index.css");
     }
 
 
     public void Dispose()
     {
-        _ = Context.UnLoadJs("index.js");
-        _ = Context.UnLoadCss("index.css");
+        _ = Context.UnLoadJs("assets/index.js");
+        _ = Context.UnLoadCss("assets/index.css");
     }
 }
