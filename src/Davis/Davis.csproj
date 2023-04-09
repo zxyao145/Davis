@@ -9,6 +9,7 @@
 		<Platforms>AnyCPU;x64</Platforms>
 		<RootNamespace>Davis</RootNamespace>
 		<ApplicationIcon>logo.ico</ApplicationIcon>
+		<Version>1.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -61,6 +61,12 @@ class Program
             }
             var urlPath = url.Substring("app://".Length);// app://MessagePlugin/wwwroot/index.js
             var filePath = Path.Combine(AppContext.BaseDirectory, urlPath);
+
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                return Stream.Null;
+            }
+
             var sr = new StreamReader(filePath);
             return sr.BaseStream;
         });
