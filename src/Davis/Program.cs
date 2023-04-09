@@ -19,6 +19,7 @@ class Program
         appBuilder.Services
             .AddLogging();
         appBuilder.Services
+            .AddAntDesign()
             .AddBlazoredSessionStorage()
             .AddSingleton<PluginService>()
             .AddScoped<IPluginContext, PluginContext>();

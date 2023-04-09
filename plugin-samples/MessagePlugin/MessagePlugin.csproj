@@ -7,20 +7,21 @@
 		<OutputPath>../../src/Davis/Plugins/$(MSBuildProjectName)</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-
 	</PropertyGroup>
 
-
 	<ItemGroup>
-		<SupportedPlatform Include="browser" />
+		<PackageReference Include="AntDesign" Version="0.14.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>compile</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.15" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\Davis.Core\Davis.Core.csproj" />
+		<ProjectReference Include="..\..\src\Davis.Core\Davis.Core.csproj">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>compile</IncludeAssets>
+			<ExcludeAssets>runtime;contentFiles;build;buildTransitive;analyzers;native</ExcludeAssets>
+		</ProjectReference>
 	</ItemGroup>
 
 	<ItemGroup>

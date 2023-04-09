@@ -1,26 +1,30 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 @using Microsoft.JSInterop
+@using AntDesign
 
 @implements Davis.Core.IDavisPlugin
 @implements IDisposable
 @inject IJSRuntime _jsRuntime
 
-<div class="p-3 message-plugin">
-    <button @onclick="@(()=>{ Context?.SendNotification("Title", "Message");})"
-        type="button">
-        SendNotification
-    </button>
+<Space>
+    <SpaceItem>
+        <Button Type="@ButtonType.Primary" OnClick="@(()=>{ Context?.SendNotification("Title", "Message");})">
+            SendNotification
+        </Button>
+    </SpaceItem>
 
-    <button @onclick="@(()=>{ Context?.SendWebMessage("Message");})"
-            type="button">
-        OnSendWebMessage
-    </button>
+    <SpaceItem>
+        <Button Type="@ButtonType.Primary" OnClick="@(()=>{ Context?.SendWebMessage("Message");})">
+            SendWebMessage
+        </Button>
+    </SpaceItem>
 
-    <button @onclick="@(async ()=>{ await _jsRuntime.InvokeVoidAsync("alert", "Hello World!");})"
-            type="button">
-        OnSendWebMessage
-    </button>
-</div>
+    <SpaceItem>
+        <Button Type="@ButtonType.Primary" OnClick="@(async ()=>{ await _jsRuntime.InvokeVoidAsync("pluginAlert", "Hello World!");})">
+            plugin js function
+        </Button>
+    </SpaceItem>
+</Space>
 
 @code {
     [CascadingParameter]

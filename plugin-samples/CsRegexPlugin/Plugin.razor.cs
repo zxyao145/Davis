@@ -12,18 +12,18 @@ namespace CsRegexPlugin
 {
     public partial class Plugin
     {
-        private string _pattern = "";
+        private string _pattern = "he[\\w]*";
 
         private void OnRegexStrChange(ChangeEventArgs e)
         {
             _pattern = e.Value?.ToString() ?? "";
         }
 
-        private string _txt = "";
+        private string _text = "hello world!\nhello world!";
 
-        private void OnTxtChange(ChangeEventArgs e)
+        private void OnTextChange(ChangeEventArgs e)
         {
-            _txt = e.Value?.ToString() ?? "";
+            _text = e.Value?.ToString() ?? "";
         }
 
         private MatchCollection? _matchCollection = null;
@@ -31,7 +31,7 @@ namespace CsRegexPlugin
         private Task OnOk(MouseEventArgs e)
         {
             var regex = new Regex(_pattern);
-            _matchCollection = regex.Matches(_txt);
+            _matchCollection = regex.Matches(_text);
             return Task.CompletedTask;
         }
     }

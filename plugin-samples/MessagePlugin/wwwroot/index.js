@@ -5,3 +5,7 @@ window.external.receiveMessage(msg => {
     }
     console.log(msg);
 });
+
+window.pluginAlert = (msg) => {
+    alert("pluginAlert: " + msg);
+}

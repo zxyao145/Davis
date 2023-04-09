@@ -42,23 +42,24 @@
     {
         foreach (var item in _renderPlugins)
         {
-            <div class="card m-3" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><b>@item.Name</b></h5>
-                    <h6 class="card-subtitle mb-3 text-muted">@($"{item.Version}@{item.Author}")</h6>
-                    <div class="tags mb-2">
-                        @foreach(var tag in item.Tags)
+            <Card Class="m-3" Style="width: 18rem;">
+                <TitleTemplate>
+                    <b>@item.Name</b>
+                </TitleTemplate>
+                <Extra>
+                    <a href="/plugin/@HttpUtility.UrlEncode(item.FileName)" class="card-link">Open</a>
+                </Extra>
+                <Body>
+                    <div class="card-subtitle mb-2">@($"{item.Version}@{item.Author}")</div>
+                    <div class="tags mb-3">
+                        @foreach (var tag in item.Tags)
                         {
-                            <span class="badge bg-navy user-select-none">@tag</span>
+                            <Tag Color="@PresetColor.Green.ToString()" Class="bg-navy user-select-none">@tag</Tag>
                         }
-
                     </div>
-                    <p class="card-text card-desc">@item.Description</p>
-                    <footer class="d-flex justify-content-end">
-                        <a href="/plugin/@HttpUtility.UrlEncode(item.FileName)" class="card-link">Open</a>
-                    </footer>
-                </div>
-            </div>
+                    <div class="card-desc">@item.Description</div>
+                </Body>
+            </Card>
         }
     }
     else

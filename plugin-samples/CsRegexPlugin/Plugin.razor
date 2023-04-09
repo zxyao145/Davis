@@ -1,14 +1,27 @@
 ﻿@implements Davis.Core.IDavisPlugin
+@implements IDisposable
+
 
 <div class="p-3">
     <div class="form-floating mb-3">
-        <textarea @onchange="OnRegexStrChange" @onchange:stopPropagation="true" class="form-control" placeholder="cookies" id="json" style="height: 150px"></textarea>
-        <label for="json">Pattern</label>
+        <textarea value="@_pattern"
+                  @onchange="OnRegexStrChange"
+                  @onchange:stopPropagation="true"
+                  class="form-control"
+                  placeholder="pattern"
+                  id="pattern"
+                  style="height: 150px">
+        </textarea>
+        <label for="json">pattern</label>
     </div>
 
     <div class="form-floating mb-3">
-        <textarea @onchange="OnTxtChange" @onchange:stopPropagation="true" class="form-control" placeholder="cookies" id="json" style="height: 150px"></textarea>
-        <label for="json">txt</label>
+        <textarea value="@_text" @onchange="OnTextChange" @onchange:stopPropagation="true"
+                  class="form-control"
+                  placeholder="text"
+                  id="text" style="height: 150px">
+        </textarea>
+        <label for="text">text</label>
     </div>
     @if (_matchCollection != null)
     {
@@ -28,10 +41,29 @@
             </ul>
         }
     }
-    
+
 
     <footer class="d-flex justify-content-end mb-3">
         <a href="/" class="btn btn-light">返回</a> &nbsp;&nbsp;
         <button @onclick="@OnOk" type="button" class="btn btn-primary">确定</button>
     </footer>
 </div>
+
+
+@code {
+    [CascadingParameter]
+    public Davis.Core.IPluginContext Context { get; set; } = default!;
+
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        await Context.LoadCss("bootstrap/bootstrap.min.css");
+    }
+
+
+    public void Dispose()
+    {
+        _ = Context.UnLoadCss("bootstrap/bootstrap.min.css");
+    }
+}
