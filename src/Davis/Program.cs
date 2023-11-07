@@ -4,6 +4,8 @@ using Davis.Core;
 using Microsoft.Extensions.DependencyInjection;
 using OneOf.Types;
 using Photino.Blazor;
+using PhotinoNET;
+using System.Text.Json;
 
 namespace Davis;
 
@@ -38,13 +40,17 @@ class Program
             .SetChromeless(false)
             .SetTitle("Davis")
             .SetIconFile("logo.ico")
+            .SetUseOsDefaultSize(false)
             .SetWidth((int)(960 * 1.25)) // 320 * 3
-            .SetHeight((int)(593 * 1.25));//240.6 * 3=578.4
+            .SetHeight((int)(593 * 1.25)) //240.6 * 3=578.4
+            .SetBrowserControlInitParameters(GetBrowserControlInitParameters())
+            ;
+
         app.MainWindow.Centered = true;
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
-            app.MainWindow.OpenAlertWindow("Fatal exception", error.ExceptionObject.ToString());
+            app.MainWindow.ShowMessage("Fatal exception", error.ExceptionObject.ToString());
         };
         app.MainWindow.RegisterCustomSchemeHandler("davis", (object sender, string scheme, string url, out string contentType) =>
         {
@@ -65,7 +71,7 @@ class Program
 
             if (!File.Exists(filePath))
             {
-                app.MainWindow.OpenAlertWindow("not fount assets", url);
+                app.MainWindow.ShowMessage("not fount assets", url);
                 return Stream.Null;
             }
             try
@@ -75,12 +81,19 @@ class Program
             }
             catch (Exception e)
             {
-                app.MainWindow.OpenAlertWindow("Fatal exception", e.Message);
+                app.MainWindow.ShowMessage("Fatal exception", e.Message);
                 return Stream.Null;
             }
         });
 
         app.Run();
+    }
+
+    private static string GetBrowserControlInitParameters()
+    {
+        string browserControlInitParams = "--flag --kiosk=false";
+
+        return browserControlInitParams;
     }
 }
 
